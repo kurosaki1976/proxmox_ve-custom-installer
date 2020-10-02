@@ -73,4 +73,5 @@ Desde la web admininistrativa de Proxmox VE, en `Datacenter/Storage/Add/Director
 * [Installation](https://pve.proxmox.com/wiki/Installation)
 * [Advanced LVM Configuration Options](https://pve.proxmox.com/wiki/Installation#advanced_lvm_options)
 * [Storage](https://pve.proxmox.com/wiki/Storage)
+* [The advanced installation option](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788397605/1/ch01lvl1sec11/the-advanced-installation-option)
 * [TIPS- Buenas prácticas al instalar un Proxmox](https://www.sysadminsdecuba.com/2017/11/tips-buenas-practicas-al-instalar-un-proxmox/)
