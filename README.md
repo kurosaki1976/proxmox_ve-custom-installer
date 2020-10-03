@@ -74,7 +74,7 @@ mount -a
 
 Desde la web admininistrativa de Proxmox VE, en `Datacenter/Storage/Add/Directory` añadir un directorio destinado a almacenar las salvas. También se puede editar el fichero `/etc/pve/storage.cfg` o ejecutar el utilitario `pvesm` desde la interfaz de línea de comandos.
 
-- Estracto ejemplo del fichero `/etc/pve/storage.cfg`:
+#### Estracto ejemplo del fichero `/etc/pve/storage.cfg`:
 
 ```bash
 dir: pve-backups
@@ -82,7 +82,7 @@ dir: pve-backups
     content iso,vztmpl,backup
 ```
 
-- Ejemplo de ejecución del utilitario `pvesm`:
+#### Ejemplo de ejecución del utilitario `pvesm`:
 
 ```bash
 pvesm add dir pve-backups --path /var/lib/pve-backups --content iso,vztmpl,backup
