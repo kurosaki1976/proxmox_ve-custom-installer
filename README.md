@@ -20,45 +20,51 @@ A los efectos de este tutorial, el valor de `maxroot` se obtendrá determinando 
 
 Por ejemplo si se dispone de un disco de 1Tb para la instalación de Proxmox VE en un servidor con 8Gb de memoria RAM, el cálculo del valor del parámetro `minfree`, sería `minfree = (931-8-93)/2`.
 
+## Asignar espacio disponible para volumen de salvas
+
 Al concluir la instalación de Promxox VE, acceder a la consola y ejecutar los comandos siguientes:
 
-### Mostrar espacio disponible para volumen de salvas
+### Mostrar espacio libre disponible
 
 ```bash
 vgdisplay | grep Free
 ```
 
-### Crear un volumen lógico para las salvas
+### Crear nuevo volumen lógico
 
 ```bash
-lvcreate -l 100%FREE -n storage pve
+lvcreate -l 100%FREE -n backups pve
 ```
 
 ### Dar formato al volumen
 
 ```bash
-mkfs.ext4 /dev/pve/storage
+mkfs.ext4 /dev/pve/backups
 ```
 
 ### Crear subdirectorio de salvas
 
 ```bash
-mkdir -p /var/lib/storage
+mkdir -p /var/lib/pve-backups
 ```
 
-### Montar automáticamente el volúmen de salvas
+### Montar automáticamente el volúmen
+
+#### Agregar nuevo punto de montaje
 
 ```bash
 nano /etc/fstab
 
-/dev/pve/storage /var/lib/storage ext4 errors=remount-ro defaults,noatime,discard 0 2
+/dev/pve/backups /var/lib/pve-backups ext4 errors=remount-ro defaults,noatime,discard 0 2
 
 ó
 
-UUID=d233ae68-1ef3-454d-b34d-47ba38c81e27 /var/lib/storage ext4 defaults,noatime,discard 0 2
+UUID=d233ae68-1ef3-454d-b34d-47ba38c81e27 /var/lib/pve-backups ext4 defaults,noatime,discard 0 2
 ```
 
 > **NOTA**: El `UUID` puede obtenerse ejecutando `lsblk -f`.
+
+#### Montar el volumen en el sistema de archivos
 
 ```bash
 mount -a
@@ -67,6 +73,21 @@ mount -a
 ### Crear almacenamiento para salvas
 
 Desde la web admininistrativa de Proxmox VE, en `Datacenter/Storage/Add/Directory` añadir un directorio destinado a almacenar las salvas. También se puede editar el fichero `/etc/pve/storage.cfg` o ejecutar el utilitario `pvesm` desde la interfaz de línea de comandos.
+
+- Estracto ejemplo del fichero `/etc/pve/storage.cfg`:
+
+```bash
+dir: pve-backups
+    path /var/lib/pve-backups
+    content iso,vztmpl,backup
+```
+
+- Ejemplo de ejecución del utilitario `pvesm`:
+
+```bash
+pvesm add dir pve-backups --path /var/lib/pve-backups --content iso,vztmpl,backup
+pvesm set pve-backups --disable 0
+```
 
 ## Referencias
 
