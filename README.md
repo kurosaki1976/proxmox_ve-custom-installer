@@ -95,7 +95,7 @@ pvesm set pve-backups --disable 0
 0 0 * * * root vzdump --all --mailnotification always --mode snapshot --storage pve-backups --quiet 1 --mailto postmaster@example.tld --compress zstd
 ```
 
-> **NOTA**: La automatización de las salvas periódicas debe definirse en la interfaz web administrativa, a través de la ruta `Datacenter/Backup/Add`. La edición del fichero `/etc/cron.d/vzdump`, no debe realizarse de forma manual si no se conocen con seguridad las opciones a definirse.
+> **NOTA**: La automatización de las salvas periódicas debe definirse en la interfaz web administrativa, mediante la ruta `Datacenter/Backup/[Add|Remove|Edit]`. La edición del fichero `/etc/cron.d/vzdump`, no debe realizarse de forma manual si no se conocen con seguridad los parámetros de configuración.
 
 ## Referencias
 
