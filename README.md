@@ -92,7 +92,7 @@ pvesm set pve-backups --disable 0
 #### Estracto del fichero `/etc/cron.d/vzdump` para automatización periódica de salvas:
 
 ```bash
-0 0 * * 1,3,5 root vzdump 100 101 --mailnotification always --mode snapshot --storage pve-backups --quiet 1 --mailto postmaster@example.tld --compress zstd
+0 0 * * * root vzdump --all --mailnotification always --mode snapshot --storage pve-backups --quiet 1 --mailto postmaster@example.tld --compress zstd
 ```
 
 ## Referencias
