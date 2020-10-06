@@ -89,16 +89,19 @@ pvesm add dir pve-backups --path /var/lib/pve-backups --content iso,vztmpl,backu
 pvesm set pve-backups --disable 0
 ```
 
-#### Estracto del fichero `/etc/cron.d/vzdump` para automatización periódica de salvas:
+#### Estracto ejemplo del fichero `/etc/cron.d/vzdump`, para automatización periódica de salvas:
 
 ```bash
 0 0 * * * root vzdump --all --mailnotification always --mode snapshot --storage pve-backups --quiet 1 --mailto postmaster@example.tld --compress zstd
 ```
+
+> **NOTA**: La automatización de las salvas periódicas debe definirse en la interfaz web administrativa, a través de la ruta `Datacenter/Backup/Add`. La edición del fichero `/etc/cron.d/vzdump`, no debe realizarse de forma manual si no se conocen con seguridad las opciones a definirse.
 
 ## Referencias
 
 * [Installation](https://pve.proxmox.com/wiki/Installation)
 * [Advanced LVM Configuration Options](https://pve.proxmox.com/wiki/Installation#advanced_lvm_options)
 * [Storage](https://pve.proxmox.com/wiki/Storage)
+* [Backup and Restore](https://pve.proxmox.com/wiki/Backup_and_Restore)
 * [The advanced installation option](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788397605/1/ch01lvl1sec11/the-advanced-installation-option)
 * [TIPS- Buenas prácticas al instalar un Proxmox](https://www.sysadminsdecuba.com/2017/11/tips-buenas-practicas-al-instalar-un-proxmox/)
