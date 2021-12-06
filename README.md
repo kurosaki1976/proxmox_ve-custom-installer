@@ -114,4 +114,3 @@ pvesm set pve-backups --disable 0
 * [Storage](https://pve.proxmox.com/wiki/Storage)
 * [Backup and Restore](https://pve.proxmox.com/wiki/Backup_and_Restore)
 * [The advanced installation option](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788397605/1/ch01lvl1sec11/the-advanced-installation-option)
-* [Storage: LVM Thin](https://pve.proxmox.com/wiki/Storage:_LVM_Thin)
