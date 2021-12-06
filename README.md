@@ -2,7 +2,7 @@
 
 ## Autor
 
-- [Ixen Rodríguez Pérez - kurosaki1976](ixenrp1976@gmail.com)
+- [Ixen Rodríguez Pérez - kurosaki1976](https://github.com/kurosaki1976)
 
 ## Preámbulo
 
