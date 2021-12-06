@@ -4,6 +4,16 @@
 
 - [Ixen Rodríguez Pérez - kurosaki1976](ixenrp1976@gmail.com)
 
+## Preámbulo
+
+Todo lo que se explicará a continuación, sólo es válido si se desea realizar una instalación personalizada del sistema operativo. Sin embargo, existe otra posibilidad de utilizar el resto del espacio en disco duro al concluir la instalación por defecto (sin personalizar valores) de Proxmox VE, tal y como era antes de la versión 4.2, donde se incluyó el almacenamiento `LVM-thin` que constituye una mejora permitiendo dividir o combinar particiones; incluso de diferentes discos.
+
+Una vez concluido el proceso de instalación, acceder a la web admininistrativa de Proxmox VE, y en `Datacenter/Storage/` seleccionar `local-lvm` y clic en el botón `Remove`. Luego desde la consola del nodo ejecutar `lvremove /dev/pve/data` y aceptar que se desea eliminar el volumen `pve/data`.
+
+En este punto se puede verificar el espacio libre disponible con el comando `vgdisplay | grep Free`, y posteriormente redefinir el tamaño del volumen `pve/root` (donde se encuentra la partición raíz `/`) ejecutando `lvresize -l 100%FREE /dev/pve/root`; agregando así, el espacio libre disponible a dicho volumen.
+
+Finalmente, se debe reasignar el tamaño de la partición `Datacenter/Storage/local` ejecutando `resise2fs /dev/mapper/pve-root`.
+
 ## El pollo del arroz con pollo
 
 En el proceso de instalación del Promxox VE se puede definir el espacio libre que tendrá el LVM, destinado para las salvas de los CTs/VMs. En el momento de escoger el HDD hacer click en el botón `Options`, se mostrará una ventana donde pueden ser configurados los parámetros siguientes:
@@ -104,4 +114,4 @@ pvesm set pve-backups --disable 0
 * [Storage](https://pve.proxmox.com/wiki/Storage)
 * [Backup and Restore](https://pve.proxmox.com/wiki/Backup_and_Restore)
 * [The advanced installation option](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788397605/1/ch01lvl1sec11/the-advanced-installation-option)
-* [TIPS- Buenas prácticas al instalar un Proxmox](https://www.sysadminsdecuba.com/2017/11/tips-buenas-practicas-al-instalar-un-proxmox/)
+* [Storage: LVM Thin](https://pve.proxmox.com/wiki/Storage:_LVM_Thin)
